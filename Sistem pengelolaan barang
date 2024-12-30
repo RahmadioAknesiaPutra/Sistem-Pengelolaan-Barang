@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    string namaBarang;
+    int jumlahBarang;
+    float hargaPerUnit;
+    float totalHarga;
+
+    cout << "Masukkan nama barang: ";
+    cin >> namaBarang;
+    
+    cout << "Masukkan jumlah barang: ";
+    cin >> jumlahBarang;
+    
+    cout << "Masukkan harga per unit: ";
+    cin >> hargaPerUnit;
+    
+    totalHarga = jumlahBarang * hargaPerUnit;
+    
+    cout << "Total pembayaran: " << totalHarga << endl;
+
+    return 0;
+}
