@@ -1,24 +1,122 @@
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
 using namespace std;
 
-int main() {
-    string namaBarang;
-    int jumlahBarang;
-    float hargaPerUnit;
-    float totalHarga;
+struct data{
+    char nama_barang[100], kode_barang[10];
+    int jumlah_barang, harga;
+};
 
-    cout << "Masukkan nama barang: ";
-    cin >> namaBarang;
-    
-    cout << "Masukkan jumlah barang: ";
-    cin >> jumlahBarang;
-    
-    cout << "Masukkan harga per unit: ";
-    cin >> hargaPerUnit;
-    
-    totalHarga = jumlahBarang * hargaPerUnit;
-    
-    cout << "Total pembayaran: " << totalHarga << endl;
+data maksimal[100];
+int a, b,c, d;
 
-    return 0;
+
+void tambahbarang()
+{
+    cout<<"Berapakah Jumlah Barang yang ingin anda masukan ? : "; cin>>b;
+    d = 0;
+    for( c=0; c<a; c++ )
+    {
+        d = d + 1;
+        cout<<"\nBarang ke - : \t"<<d<<endl;
+        cout<<"Masukan kode barang \t : \t"; cin>>maksimal[a].kode_barang;
+        cout<<"Masukan nama barang \t : \t"; cin>>maksimal[a].nama_barang;
+        cout<<"Masukan jumlah barang \t : \t"; cin>>maksimal[a].jumlah_barang;
+        cout<<"Masukan harga brang \t : \t"; cin>>maksimal[a].harga;
+        a++;
+    }
+}
+
+void lihatbarang()
+{
+    int i, j;
+    cout<<"Daftar Barang"<<endl;
+    cout<<"|| \tKode Barang\t || \tNama Barang\t || \tJumlah Barang\t || \tHarga Barang\t || \tJumlah\t ||";
+    j = 0;
+    for( i=0; i<a; i++ )
+    {
+        int total = maksimal[i].jumlah_barang * maksimal[i].harga;
+        j = j + 1;
+        cout<<"================="<<endl;
+        cout<<"|| \t"<< j <<"\t||";
+        cout<<maksimal[i].kode_barang<<"\t\t ||";
+        cout<<maksimal[i].nama_barang << "\t\t ||";
+        cout<< maksimal[i].jumlah_barang << "\t\t ||";
+        cout<< maksimal[i].harga << "\t\t ||";
+        cout<< total <<"\t\t ||";
+    }
+    cout<<"================";
+}
+
+void ubahbarang()
+{
+    int k, l;
+    cout<<"Masukan Barang yang diubah : "; cin >> k;
+    l = k - 1;
+    cout<<"Kode Barang"; cin >> maksimal[1].kode_barang;
+    cout<<"Nama Barang"; cin >> maksimal[1].nama_barang;
+    cout<<"Jumlah Barang"; cin >> maksimal[1].jumlah_barang;
+    lihatbarang();
+}
+
+void hapusbarang()
+{
+    int x, y;
+    cout<<"Hapus Barang ke - : "; cin >> x ; cout << endl;
+    y = x - 1;
+    a--;
+    for( int i=y; i<a; i++ )
+    {
+        maksimal[i] = maksimal[i + 1];
+    }
+    cout<<"Barang ke "<< x << " berhasil dihapus" << endl;
+}
+
+int main()
+{
+    int pilih;
+    char w;
+    cout << "=== Program Barang ===" << endl;
+
+    awal: cout << "Pilih menu : ";
+        cout << "\n1. Tambah Barang" << endl;
+        cout << "2. Lihat Barang" << endl;
+        cout <<"3. Ubah Barang" << endl;
+        cout <<"4. Hapus Barang" << endl;
+        cout <<"5. Keluar Program" << endl;
+        cout<<"\nMasukan pilihan "; cin >> pilih;
+    cin >> pilih;
+
+    switch( pilih ) {
+        case 1:
+            tambahbarang(); goto awal;
+            break;
+        case 2:
+            lihatbarang(); goto awal;
+            break;
+        case 3:
+            ubahbarang(); goto awal;
+            break;
+        case 4:
+            hapusbarang(); goto awal;
+            break;
+        case 5:
+            cout << "\n=== Apakah And Yakin Mau Keluar? ===\n";
+            cout << "               [Y]          [N]               "<<endl;
+            cout << "                      ";
+            cin >> w;
+            if( w=='y'||w=='Y' )
+            {
+                cout<<"\n=== Selesai Sudah ===\n";
+                if( w=='n'||w=='N' )
+                { goto awal; }
+            }
+            else{ cout << "Pilihan 1 - 5";
+            getch(); goto awal;}
+        default :
+            break;
+    }
 }
